@@ -13,6 +13,12 @@ public class ConnectionDatabase {
 	private final static String user = "sa";
 	private final static String password = "Senailab5";
 	
+	/**
+	 * Método responsável por conectar ao banco de dados.
+	 * 
+	 * @return - Sem retorno.
+	 */
+	
 	public static Connection getConnection() {
 		
 		try {
@@ -25,6 +31,12 @@ public class ConnectionDatabase {
 		
 	}
 	
+	/**
+	 * Método responsável por fechar a conexão com o banco de dados.
+	 * 
+	 * @param con - Objeto do tipo Connection que será fechado.
+	 */
+	
 	public static void closeConnection(Connection con) {
 
 			try {
@@ -36,6 +48,13 @@ public class ConnectionDatabase {
 			}
 		System.out.println("Conexão Fechada '-'");
 	}
+	
+	/**
+	 * Sobrecarga do método responsável por fechar a conexão com o banco de dados.
+	 * 
+	 * @param con - Objeto do tipo Connection que será fechado.
+	 * @param stmt - Objeto do tipo PreparedStatment que será fechado.
+	 */
 	
 	public static void closeConnection(Connection con, PreparedStatement stmt) {
 		
@@ -50,6 +69,14 @@ public class ConnectionDatabase {
 			}
 		
 	}
+	
+	/**
+	 * Sobrecarga do método responsável por fechar a conexão com o banco de dados.
+	 * 
+	 * @param con - Objeto do tipo Connection que será fechado.
+	 * @param stmt - Objeto do tipo PreparedStatment que será fechado.
+	 * @param rs -Objeto do tipo ResultSet que será fechado.
+	 */
 	
 	public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs) {
 		
