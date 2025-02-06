@@ -9,9 +9,9 @@ import java.sql.SQLException;
 public class ConnectionDatabase {
 	
 	private static final String Driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	private static final String URL = "jdbc:sqlserver://localhost:49907;encrypt=false;databaseName=Mercadinho;user=sa;password=Senailab5";
+	private static final String URL = "jdbc:sqlserver://localhost:64594;encrypt=false;databaseName=Mercadinho;user=sa;password=Senailab05";
 	private final static String user = "sa";
-	private final static String password = "Senailab5";
+	private final static String password = "Senailab05";
 	
 	/**
 	 * Método responsável por conectar ao banco de dados.
@@ -23,10 +23,10 @@ public class ConnectionDatabase {
 		
 		try {
 			Class.forName(Driver);
-			System.out.println("Conexão bem sucedida '-'");
+			System.out.println("Conexão bem sucedida!");
 			return DriverManager.getConnection(URL, user, password);
 		} catch (ClassNotFoundException | SQLException e) {
-			throw new RuntimeException("Erro ao Conectar >:C", e);
+			throw new RuntimeException("Erro ao Conectar...", e);
 		}
 		
 	}
@@ -46,7 +46,7 @@ public class ConnectionDatabase {
 				} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		System.out.println("Conexão Fechada '-'");
+		System.out.println("Conexao Fechada '-'");
 	}
 	
 	/**

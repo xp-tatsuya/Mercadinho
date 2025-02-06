@@ -3,25 +3,21 @@ package Model;
 public class Produto_Venda {
 	
 	private String id;
-	private String codeFornecedor;
+	private String codeProduto;
 	private String codeVenda;
 	private String quantidade;
-	
-	
 	
 	public Produto_Venda() {
 		super();
 	}
 
-
-	public Produto_Venda(String id, String codeFornecedor, String codeVenda, String quantidade) {
+	public Produto_Venda(String id, String codeProduto, String codeVenda, String quantidade) {
 		super();
 		this.id = id;
-		this.codeFornecedor = codeFornecedor;
+		this.codeProduto = codeProduto;
 		this.codeVenda = codeVenda;
 		this.quantidade = quantidade;
 	}
-	
 	
 	public String getId() {
 		return id;
@@ -29,11 +25,11 @@ public class Produto_Venda {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getCodeFornecedor() {
-		return codeFornecedor;
+	public String getCodeProduto() {
+		return codeProduto;
 	}
-	public void setCodeFornecedor(String codeFornecedor) {
-		this.codeFornecedor = codeFornecedor;
+	public void setCodeProduto(String codeProduto) {
+		this.codeProduto = codeProduto;
 	}
 	public String getCodeVenda() {
 		return codeVenda;
@@ -49,5 +45,5 @@ public class Produto_Venda {
 	}
 	
 	
-
+	
 }
