@@ -7,49 +7,52 @@ import ConnectionFactory.ConnectionDatabase;
 import DAO.Produto_VendaDAO;
 import Model.Produto_Venda;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
+	
+	private static Stage stage;
+	private static Scene login;
+	private static Scene main;
+	
+	
     @Override
     public void start(Stage primaryStage) {
         try {
-            BorderPane root = new BorderPane();
-            Scene scene = new Scene(root, 400, 400);
-            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-            primaryStage.setScene(scene);
+            
+        	stage = primaryStage;
+        	primaryStage.setTitle("Login");
+        	
+        	Parent fxmlLogin = FXMLLoader.load(getClass().getResource("/View/viewlogin.fxml"));
+        	login = new Scene(fxmlLogin);
+        	
+        	Parent fxmlMain = FXMLLoader.load(getClass().getResource("/View/viewMain.fxml"));
+        	main = new Scene(fxmlMain);
+        	
+            primaryStage.setScene(login);
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
+    public static void changeScreen(String tela) {
+    	
+    	if (tela.equals("main")) {
+    		stage.setScene(main);
+    		stage.centerOnScreen();
+    		stage.setTitle("Menu Principal");
+    	}
+    	
+    }
 
     public static void main(String[] args) {
     	
-        Connection con = ConnectionDatabase.getConnection();
-        ConnectionDatabase.closeConnection(con);
         
-        Produto_Venda produtoVenda = new Produto_Venda();
-        Produto_VendaDAO produtoVendaDAO = new Produto_VendaDAO();
-        ArrayList<Produto_Venda> produtosVenda = new ArrayList<>();
-        produtoVenda.setQuantidade("6");
-        produtosVenda.addAll(produtoVendaDAO.search(produtoVenda));
-
-        for (Produto_Venda pv : produtosVenda) {
-            System.out.println("");
-            System.out.print(pv.getId() + " | ");
-            System.out.print(pv.getCodeProduto() + " | ");
-            System.out.print(pv.getCodeVenda() + " | ");
-            System.out.print(pv.getQuantidade() + " | ");
-        }
-        
-        /*produtoVenda.setCodeProduto("15");
-        produtoVenda.setCodeVenda("73");
-        produtoVenda.setQuantidade("10");
-        //produtoVenda.setId("69");
-        
-        produtoVendaDAO.create(produtoVenda);*/
 
         launch(args);
     }

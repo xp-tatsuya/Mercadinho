@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import ConnectionFactory.ConnectionDatabase;
 import Model.Funcionario;
+import Util.Alerts;
+import javafx.scene.control.Alert.AlertType;
 
 public class FuncionarioDAO {
     
@@ -165,4 +167,44 @@ public class FuncionarioDAO {
         
         return funcionarios;
     }
+    
+    public Funcionario autenticarUser(String cpf, String senha) {
+    	
+    	Connection con = ConnectionDatabase.getConnection();
+    	PreparedStatement stmt = null;
+    	ResultSet rs = null;
+		Funcionario func = new Funcionario();
+
+    	
+    	try {
+			stmt = con.prepareStatement("select * from Funcionario where cpfFuncionario = ? and senha = ?");
+			stmt.setString(1, cpf);
+			stmt.setString(2, senha);
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+            func.setId(rs.getString("idFuncionario"));
+            func.setNome(rs.getString("nomeFuncionario"));
+            func.setSenha(rs.getString("senha"));
+            func.setCpf(rs.getString("cpfFuncionario"));
+            func.setEmail(rs.getString("emailFuncionario"));
+            func.setTelefone(rs.getString("telefoneFuncionario"));
+            func.setGenero(rs.getString("generoFuncionario"));
+            func.setEndereco(rs.getString("enderecoFuncionario"));
+            func.setDataNasc(rs.getString("dataNascFuncionario"));
+            func.setCargo(rs.getString("cargo"));
+            func.setSalario(rs.getString("salario"));
+            func.setDataAdms(rs.getString("dataDeAdmissao"));
+			}
+			
+		} catch (SQLException e) {
+			Alerts.showAlert("Erro!!", "Erro de conexão", "Falha ao consultar informações no bando de dados", AlertType.ERROR);
+			throw new RuntimeException("Erro de autenticação", e);
+		} finally {
+			ConnectionDatabase.closeConnection(con, stmt, rs);
+		}
+    	
+		return func;
+    }
+    
 }
