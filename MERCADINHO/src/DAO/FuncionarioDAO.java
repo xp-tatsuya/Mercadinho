@@ -168,6 +168,7 @@ public class FuncionarioDAO {
         return funcionarios;
     }
     
+    // Autenticar na Tela Login
     public Funcionario autenticarUser(String cpf, String senha) {
     	
     	Connection con = ConnectionDatabase.getConnection();
@@ -206,5 +207,37 @@ public class FuncionarioDAO {
     	
 		return func;
     }
+    
+    public String getTotalVendido(String id) {
+    	
+    	Connection con = ConnectionDatabase.getConnection();
+    	PreparedStatement stmt = null;
+    	ResultSet rs = null;
+    	String TotalVendido = null;
+    	
+    	try {
+    		
+			stmt = con.prepareStatement("select SUM(precoTotal) as TotalVendido from Venda where codeFuncionario = ?");
+			stmt = setString(1, id);
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				TotalVendido = rs.getString(1);
+			}
+			
+		} catch (SQLException e) {
+			Alerts.showAlert("Erro!", "Erro de conexão", "Falha ao consultar informações no banco de dados.", AlertType.ERROR);
+			throw new RuntimeException("Erro!", e);
+		} finally {
+			ConnectionDatabase.closeConnection(con, stmt, rs);
+		}
+    	
+		return TotalVendido;
+    }
+
+	private PreparedStatement setString(int i, String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
 }

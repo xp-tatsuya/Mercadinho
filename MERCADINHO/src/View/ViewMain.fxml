@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.controllerMain">
    <children>
       <Pane prefHeight="720.0" prefWidth="269.0" style="-fx-background-color: E13019;">
          <children>
@@ -22,18 +22,18 @@
                   <Image url="@../../../../../Downloads/user%20null.png" />
                </image>
             </ImageView>
-            <Label layoutX="86.0" layoutY="179.0" prefHeight="41.0" prefWidth="94.0" text="Usuário" textFill="WHITE">
+            <Label fx:id="txtUser" layoutX="86.0" layoutY="179.0" prefHeight="41.0" prefWidth="94.0" text="Usuário" textFill="WHITE">
                <font>
                   <Font name="Agency FB" size="36.0" />
                </font>
             </Label>
-            <Button layoutX="30.0" layoutY="231.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="202.0" style="-fx-background-color: linear-gradient(to right, #C32B17 1%, #CC4B4B 95%); -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-color: #e9967a; -fx-border-radius: 10;" text="Registrar Venda" textFill="WHITE">
+            <Button fx:id="btRegistroVenda" layoutX="30.0" layoutY="231.0" mnemonicParsing="false" onAction="#telaRegistroVenda" prefHeight="47.0" prefWidth="202.0" style="-fx-background-color: linear-gradient(to right, #C32B17 1%, #CC4B4B 95%); -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-color: #e9967a; -fx-border-radius: 10;" text="Registrar Venda" textFill="WHITE">
                <font>
                   <Font name="Agency FB Bold" size="24.0" />
                </font>
             </Button>
             <Line endX="-30.307098388671875" endY="283.79998779296875" layoutX="55.0" layoutY="353.0" startX="-30.307098388671875" startY="-36.600006103515625" stroke="#ffa8a8" strokeWidth="4.0" />
-            <Button layoutX="42.0" layoutY="340.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: A32717; -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-radius: 10;" text="Menu Principal" textFill="WHITE">
+            <Button fx:id="btMain" layoutX="42.0" layoutY="340.0" mnemonicParsing="false" onAction="#telaMain" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: A32717; -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-radius: 10;" text="Menu Principal" textFill="WHITE">
                <font>
                   <Font name="Agency FB Bold" size="17.0" />
                </font>
@@ -41,27 +41,27 @@
                   <DropShadow blurType="ONE_PASS_BOX" height="22.17" radius="10.877500000000001" width="23.34" />
                </effect>
             </Button>
-            <Button layoutX="41.0" layoutY="397.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: C42400; -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-radius: 10;" text="Clientes" textFill="WHITE">
+            <Button fx:id="btClientes" layoutX="41.0" layoutY="397.0" mnemonicParsing="false" onAction="#telaClientes" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: C42400; -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-radius: 10;" text="Clientes" textFill="WHITE">
                <font>
                   <Font name="Agency FB Bold" size="17.0" />
                </font>
             </Button>
-            <Button layoutX="44.0" layoutY="456.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: C42400; -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-radius: 10;" text="Produtos" textFill="WHITE">
+            <Button fx:id="btProdutos" layoutX="44.0" layoutY="456.0" mnemonicParsing="false" onAction="#telaProdutos" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: C42400; -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-radius: 10;" text="Produtos" textFill="WHITE">
                <font>
                   <Font name="Agency FB Bold" size="17.0" />
                </font>
             </Button>
-            <Button layoutX="44.0" layoutY="517.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: C42400; -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-radius: 10;" text="Funcionários" textFill="WHITE">
+            <Button fx:id="btFuncionarios" layoutX="44.0" layoutY="517.0" mnemonicParsing="false" onAction="#telaFuncionarios" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: C42400; -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-radius: 10;" text="Funcionários" textFill="WHITE">
                <font>
                   <Font name="Agency FB Bold" size="17.0" />
                </font>
             </Button>
-            <Button layoutX="41.0" layoutY="579.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: C42400; -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-radius: 10;" text="Fornecedores" textFill="WHITE">
+            <Button fx:id="btFornecedores" layoutX="41.0" layoutY="579.0" mnemonicParsing="false" onAction="#telaFornecedores" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: C42400; -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-radius: 10;" text="Fornecedores" textFill="WHITE">
                <font>
                   <Font name="Agency FB Bold" size="17.0" />
                </font>
             </Button>
-            <Button layoutX="78.0" layoutY="651.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="104.0" style="-fx-background-color: linear-gradient(to right, #D42929 1%, #C32B17 95%); -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-color: #e9967a; -fx-border-radius: 10;" text="Sair" textFill="WHITE">
+            <Button fx:id="btSair" layoutX="78.0" layoutY="651.0" mnemonicParsing="false" onAction="#logOut" prefHeight="43.0" prefWidth="104.0" style="-fx-background-color: linear-gradient(to right, #D42929 1%, #C32B17 95%); -fx-background-radius: 10; -fx-border-image-width: 1; -fx-border-color: #e9967a; -fx-border-radius: 10;" text="Sair" textFill="WHITE">
                <font>
                   <Font name="Agency FB Bold" size="17.0" />
                </font>
@@ -76,9 +76,9 @@
          </children>
       </Pane>
       <Line endX="-94.73333740234375" endY="283.79998779296875" layoutX="387.0" layoutY="-207.0" startX="647.9332275390625" startY="283.79998779296875" stroke="#e10000" strokeWidth="5.0" />
-      <Label layoutX="290.0" layoutY="35.0" prefHeight="44.0" prefWidth="295.0" text="SEJA BEM-VINDO DE VOLTA USUÁRIO">
+      <Label layoutX="290.0" layoutY="35.0" prefHeight="44.0" prefWidth="346.0" text="SEJA BEM-VINDO DE VOLTA!">
          <font>
-            <Font name="Agency FB" size="24.0" />
+            <Font name="Agency FB" size="36.0" />
          </font>
       </Label>
       <Pane layoutX="310.0" layoutY="96.0" prefHeight="56.0" prefWidth="730.0" style="-fx-background-color: E13019; -fx-background-radius: 10;">
@@ -88,14 +88,14 @@
                   <Font name="Agency FB" size="48.0" />
                </font>
             </Label>
-            <Label layoutX="339.0" layoutY="10.0" prefHeight="42.0" prefWidth="221.0" text="R$ 000,00" textFill="WHITE">
+            <Label fx:id="txtTotalVendido" layoutX="339.0" layoutY="10.0" prefHeight="42.0" prefWidth="365.0" text="R$ 000,00" textFill="WHITE">
                <font>
                   <Font name="Arial" size="36.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Button layoutX="309.0" layoutY="169.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="243.0" style="-fx-background-color: E13019; -fx-background-radius: 10;" text="Relatório de Vendas" textFill="WHITE">
+      <Button fx:id="btRelatorioVenda" layoutX="309.0" layoutY="169.0" mnemonicParsing="false" onAction="#telaRelatorioVenda" prefHeight="48.0" prefWidth="243.0" style="-fx-background-color: E13019; -fx-background-radius: 10;" text="Relatório de Vendas" textFill="WHITE">
          <font>
             <Font name="Agency FB Bold" size="24.0" />
          </font>
@@ -113,7 +113,7 @@
             <Font name="Agency FB" size="24.0" />
          </font>
       </Label>
-      <TableView layoutX="288.0" layoutY="410.0" prefHeight="290.0" prefWidth="752.0" style="-fx-background-radius: 10;">
+      <TableView fx:id="tableProdutos" layoutX="288.0" layoutY="410.0" prefHeight="290.0" prefWidth="752.0" style="-fx-background-radius: 10;">
         <columns>
           <TableColumn prefWidth="140.0" text="C1" />
           <TableColumn prefWidth="124.80007934570312" text="C2" />

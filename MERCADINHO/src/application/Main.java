@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -49,7 +50,22 @@ public class Main extends Application {
     	}
     	
     }
-
+    
+    public static void TelaHome() throws IOException {
+    	
+    	FXMLLoader fxmlHome = new FXMLLoader();
+    	fxmlHome.setLocation(Main.class.getResource("/View/viewMain.fxml"));
+    	Parent TelaHome = fxmlHome.load();
+    	main = new Scene(TelaHome);
+    	
+    	stage.setScene(main);
+    	stage.setResizable(false);
+    	stage.centerOnScreen();
+    	stage.show();
+    	
+    } 
+    
+    
     public static void main(String[] args) {
     	
         
