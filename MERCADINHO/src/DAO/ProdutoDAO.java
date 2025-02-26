@@ -166,4 +166,85 @@ public class ProdutoDAO {
         
         return produtos;
     }
+    
+    public ArrayList<Produto> getByEstoque() {
+        Connection con = ConnectionDatabase.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Produto> produtos = new ArrayList<>();
+        
+        try {
+            stmt = con.prepareStatement("select * from Produto where estoque < 100");
+            rs = stmt.executeQuery();
+            
+            int i = 1;
+            
+            while (rs.next()) {
+                Produto produto = new Produto();
+                produto.setId("" + i);
+                produto.setCodFornecedor(rs.getString("codeFornecedor"));
+                produto.setNome(rs.getString("nomeProduto"));
+                produto.setCodBarra(rs.getString("codBarra"));
+                produto.setLote(rs.getString("lote"));
+                produto.setDataFab(rs.getString("dataFabricacao"));
+                produto.setDataVal(rs.getString("dataValidade"));
+                produto.setMarca(rs.getString("marca"));
+                produto.setCategoria(rs.getString("categoria"));
+                produto.setUnidadeDeMed(rs.getString("unidadeDeMedida"));
+                produto.setPrecoUn(rs.getString("precoUnitario"));
+                produto.setEstoque(rs.getString("estoque"));
+                
+                produtos.add(produto);
+                i++;
+                
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar produtos!", e);
+        } finally {
+            ConnectionDatabase.closeConnection(con, stmt, rs);
+        }
+        
+        return produtos;
+    }
+    
+    public ArrayList<Produto> getByValidade() {
+        Connection con = ConnectionDatabase.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Produto> produtos = new ArrayList<>();
+        
+        try {
+            stmt = con.prepareStatement("select * from Produto where DATEDIFF(DD, GETDATE(), dataValidade) < 30 order by dataValidade;");
+            rs = stmt.executeQuery();
+            
+            int i = 1;
+            
+            while (rs.next()) {
+                Produto produto = new Produto();
+                produto.setId("" + i);
+                produto.setCodFornecedor(rs.getString("codeFornecedor"));
+                produto.setNome(rs.getString("nomeProduto"));
+                produto.setCodBarra(rs.getString("codBarra"));
+                produto.setLote(rs.getString("lote"));
+                produto.setDataFab(rs.getString("dataFabricacao"));
+                produto.setDataVal(rs.getString("dataValidade"));
+                produto.setMarca(rs.getString("marca"));
+                produto.setCategoria(rs.getString("categoria"));
+                produto.setUnidadeDeMed(rs.getString("unidadeDeMedida"));
+                produto.setPrecoUn(rs.getString("precoUnitario"));
+                produto.setEstoque(rs.getString("estoque"));
+                
+                produtos.add(produto);
+                i++;
+                
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar produtos!", e);
+        } finally {
+            ConnectionDatabase.closeConnection(con, stmt, rs);
+        }
+        
+        return produtos;
+    }
+    
 }

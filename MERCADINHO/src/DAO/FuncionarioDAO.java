@@ -218,7 +218,7 @@ public class FuncionarioDAO {
     	try {
     		
 			stmt = con.prepareStatement("select SUM(precoTotal) as TotalVendido from Venda where codeFuncionario = ?");
-			stmt = setString(1, id);
+			stmt.setString(1, id);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -234,10 +234,5 @@ public class FuncionarioDAO {
     	
 		return TotalVendido;
     }
-
-	private PreparedStatement setString(int i, String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
     
 }
