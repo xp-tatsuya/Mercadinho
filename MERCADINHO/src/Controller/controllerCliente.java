@@ -141,6 +141,31 @@ public class controllerCliente implements Initializable {
     }
     
     @FXML
+    void actionCadastrar(ActionEvent event) throws IOException {
+    	clienteEditar = null;
+    	Main.TelaCadastroCliente();
+
+    }
+    
+    
+    public static Cliente clienteEditar = new Cliente();
+    @FXML
+    void actionEditar(ActionEvent event) throws IOException {
+    	
+    	int i = tableClientes.getSelectionModel().getSelectedIndex();
+    	
+    	if (i == -1) {
+    		Alerts.showAlert("Erro!!", "Falha ao tenta erditar!", "Selecione um cliente para editar", Alert.AlertType.ERROR);
+    	} else {
+    		clienteEditar = tableClientes.getItems().get(i);
+    		Main.TelaCadastroCliente();
+    	}
+    	
+    	carregarTableClientes();
+
+    }
+    
+    @FXML
     void actionExcluir(ActionEvent event) {
     	
     	int i = tableClientes.getSelectionModel().getSelectedIndex();
@@ -176,6 +201,8 @@ public class controllerCliente implements Initializable {
 		
 		carregarTableClientes();
 		txtUser.setText("" + controllerLogin.funcionario.getNome());
+		
+		clienteEditar = null;
 		
 	}
 	
