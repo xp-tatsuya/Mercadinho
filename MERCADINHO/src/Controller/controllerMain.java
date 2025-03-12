@@ -133,7 +133,9 @@ public class controllerMain implements Initializable {
     }
 
     @FXML
-    void telaRegistroVenda(ActionEvent event) {
+    void telaRegistroVenda(ActionEvent event) throws IOException {
+    	
+    	Main.TelaRegistroVenda();
 
     }
 

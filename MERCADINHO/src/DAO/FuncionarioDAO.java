@@ -235,4 +235,33 @@ public class FuncionarioDAO {
 		return TotalVendido;
     }
     
+    public ArrayList<String> readVendedorByNome() {
+    	
+    	Connection con = ConnectionDatabase.getConnection();
+    	PreparedStatement stmt = null;
+    	ResultSet rs = null;
+    	ArrayList<String> vendedores = new ArrayList<>();
+    	
+    	try {
+    		
+            stmt = con.prepareStatement("SELECT nomeFuncionario FROM Funcionario");
+            rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                
+            	String nomeFuncionario;
+            	nomeFuncionario = rs.getString(1);
+            	vendedores.add(nomeFuncionario);
+                
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao ler os vendedores!", e);
+        } finally {
+            ConnectionDatabase.closeConnection(con, stmt, rs);
+        }
+    	
+    	return vendedores;
+    	
+	}
+    
 }

@@ -110,6 +110,24 @@ public class Main extends Application {
     	
     }
     
+    private static Stage venda;
+    public static void TelaRegistroVenda() throws IOException {
+    	
+    	FXMLLoader fxmlRegistroVenda = new FXMLLoader();
+    	fxmlRegistroVenda.setLocation(Main.class.getResource("/View/ViewRegistrarVenda.fxml"));
+    	Parent registrarVenda = fxmlRegistroVenda.load();
+    	Scene scene2 = new Scene(registrarVenda);
+    	
+    	venda = new Stage();
+    	venda.setTitle("Registrar Venda");
+    	venda.initModality(Modality.WINDOW_MODAL);
+    	venda.setScene(scene2);
+    	venda.setResizable(false);
+    	venda.centerOnScreen();
+    	venda.showAndWait();
+    	
+    }
+    
     public static void main(String[] args) {
     	
         
