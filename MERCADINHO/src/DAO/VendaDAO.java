@@ -13,27 +13,30 @@ import Model.Venda;
 public class VendaDAO {
 
 	//CREATE - criar (insert)
-    public void create(Venda venda) {
-        Connection con = ConnectionDatabase.getConnection();
-        PreparedStatement stmt = null;
+	public void create(Venda venda) {
+	    Connection con = ConnectionDatabase.getConnection();
+	    PreparedStatement stmt = null;
 
-        try {
-            stmt = con.prepareStatement("INSERT INTO Venda (codeCliente, codeFuncionario, formaDePagamento, dataVenda, desconto, precoTotal) VALUES (?, ?, ?, ?, ?, ?)");
-            stmt.setString(1, venda.getCodeCliente());
-            stmt.setString(2, venda.getCodeFuncionario());
-            stmt.setString(3, venda.getFormaDePagamento());
-            stmt.setString(4, venda.getDataVenda());
-            stmt.setString(5, venda.getDesconto());
-            stmt.setString(6, venda.getPrecoTotal());
+	    try {
+	        stmt = con.prepareStatement(
+	            "INSERT INTO Venda (codeCliente, codeFuncionario, formaDePagamento, dataVenda, desconto, precoTotal) " +
+	            "VALUES (?, ?, ?, GETDATE(), ?, ?)"
+	        );
+	        stmt.setString(1, venda.getCodeCliente());
+	        stmt.setString(2, venda.getCodeFuncionario());
+	        stmt.setString(3, venda.getFormaDePagamento());
+	        stmt.setString(4, venda.getDesconto());
+	        stmt.setString(5, venda.getPrecoTotal());
 
-            stmt.executeUpdate();
-            System.out.println("Venda cadastrada com sucesso!");
-        } catch (SQLException e) {
-            System.out.println("Erro ao cadastrar venda: " + e);
-        } finally {
-            ConnectionDatabase.closeConnection(con, stmt);
-        }
-    }
+	        stmt.executeUpdate();
+	        System.out.println("Venda cadastrada com sucesso!");
+	    } catch (SQLException e) {
+	        System.out.println("Erro ao cadastrar venda: " + e);
+	    } finally {
+	        ConnectionDatabase.closeConnection(con, stmt);
+	    }
+	}
+
 
   //READ - ler (select)
     public ArrayList<Venda> read() {
@@ -153,5 +156,27 @@ public class VendaDAO {
         return vendas;
         
     }
+    
+    public String readIdVenda() {
+        Connection con = ConnectionDatabase.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String idVenda = null;
+
+        try {
+            stmt = con.prepareStatement("SELECT MAX(idVenda) AS maxId FROM Venda");
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                idVenda = rs.getString("maxId");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar vendas: " + e);
+        } finally {
+            ConnectionDatabase.closeConnection(con, stmt, rs);
+        }
+
+        return idVenda;
+    }
+
     
 }

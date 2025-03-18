@@ -14,9 +14,30 @@ public class Produto {
 	private String unidadeDeMed;
 	private String precoUn;
 	private String estoque;
+	private String precoTotal;
 	
 	
 	
+	public String getCodeFornecedor() {
+		return codeFornecedor;
+	}
+
+
+	public void setCodeFornecedor(String codeFornecedor) {
+		this.codeFornecedor = codeFornecedor;
+	}
+
+
+	public String getPrecoTotal() {
+		return precoTotal;
+	}
+
+
+	public void setPrecoTotal(String precoTotal) {
+		this.precoTotal = precoTotal;
+	}
+
+
 	public Produto() {
 		super();
 	}

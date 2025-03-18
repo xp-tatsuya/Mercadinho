@@ -276,4 +276,42 @@ public class ProdutoDAO {
     	
     }
     
+    public ArrayList<Produto> searchID(Produto produto) {
+        Connection con = ConnectionDatabase.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Produto> produtos = new ArrayList<>();
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM Produto WHERE nomeProduto LIKE ? OR codBarra LIKE ?");
+            stmt.setString(1, "%" + produto.getNome() + "%");
+            stmt.setString(2, "%" + produto.getCodBarra() + "%");
+            rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                Produto prod = new Produto();
+                prod.setId(rs.getString("idProduto"));
+                prod.setCodFornecedor(rs.getString("codeFornecedor"));
+                prod.setNome(rs.getString("nomeProduto"));
+                prod.setCodBarra(rs.getString("codBarra"));
+                prod.setLote(rs.getString("lote"));
+                prod.setDataFab(rs.getString("dataFabricacao"));
+                prod.setDataVal(rs.getString("dataValidade"));
+                prod.setMarca(rs.getString("marca"));
+                prod.setCategoria(rs.getString("categoria"));
+                prod.setUnidadeDeMed(rs.getString("unidadeDeMedida"));
+                prod.setPrecoUn(rs.getString("precoUnitario"));
+                prod.setEstoque(rs.getString("estoque"));
+                
+                produtos.add(prod);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar produtos!", e);
+        } finally {
+            ConnectionDatabase.closeConnection(con, stmt, rs);
+        }
+        
+        return produtos;
+    }
+    
 }

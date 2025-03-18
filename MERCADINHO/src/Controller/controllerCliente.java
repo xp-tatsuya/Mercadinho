@@ -124,7 +124,9 @@ public class controllerCliente implements Initializable {
     }
 
     @FXML
-    void telaRegistroVenda(ActionEvent event) {
+    void telaRegistroVenda(ActionEvent event) throws IOException {
+    	
+    	Main.TelaRegistroVenda();
 
     }
 
@@ -155,7 +157,7 @@ public class controllerCliente implements Initializable {
     	int i = tableClientes.getSelectionModel().getSelectedIndex();
     	
     	if (i == -1) {
-    		Alerts.showAlert("Erro!!", "Falha ao tenta erditar!", "Selecione um cliente para editar", Alert.AlertType.ERROR);
+    		Alerts.showAlert("Erro!!", "Falha ao tenta editar!", "Selecione um cliente para editar", Alert.AlertType.ERROR);
     	} else {
     		clienteEditar = tableClientes.getItems().get(i);
     		Main.TelaCadastroCliente();
